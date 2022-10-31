@@ -1,0 +1,12 @@
+.comment{
+    display:flex;
+    margin:5px;
+    border:1px solid lightgray;
+    padding:5px;
+    border-radius:15px;
+}
+.comment_name_content{
+    display:flex;
+    flex-direction: column;
+    margin-left:10px;
+}

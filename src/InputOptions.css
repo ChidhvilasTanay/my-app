@@ -1,0 +1,16 @@
+.input_option{
+    display:flex;
+    align-items:center;
+    padding:10px;
+    border-radius: 10px;
+}
+.input_option button {
+    border:none;
+    outline:none;
+    background-color:inherit;
+    margin:5px;
+}
+.input_option:hover{
+    background-color: rgb(228, 225, 225);
+}
+

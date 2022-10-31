@@ -1,0 +1,29 @@
+
+
+.header_tab{
+    margin:10px;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    color:rgb(98, 98, 98);
+}
+.header_tab:hover{
+    color:black;
+}
+.header_tab .tab_icon{
+    margin:4px;
+    object-fit: contain;
+    height:27px;
+    width:27px;
+}
+@media screen and (max-width:859.2px){
+    .header_tab_name{
+        display:none;
+    }
+}
+@media screen  and (max-width:760px){
+    .header_tab{
+        margin-left:0;
+    }
+}
