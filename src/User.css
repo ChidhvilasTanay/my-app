@@ -1,0 +1,58 @@
+.user_tab{
+    margin:10px;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+    color:rgb(98, 98, 98);
+}
+.user_tab:hover{
+    color:black;
+}
+.user_tab .user_icon{
+    margin:4px;
+    object-fit: contain;
+    height:27px;
+    width:27px;
+}
+.drop_down{
+    position:relative;
+}
+
+.drop_down_content{
+    display:none;
+    flex-direction: column;
+    align-items: left;
+    position:absolute;
+    padding:10px;
+    background-color: white;
+    border-radius:15px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right:0;
+    width:200px;
+}
+.option{
+    font-weight:600;
+    padding:10px;
+    border-radius:10px;
+    padding-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.user:hover .drop_down_content{
+    display:flex;
+}
+.option:hover{
+    background-color: rgb(229, 227, 227);
+}
+@media screen and (max-width:859.2px){
+    .user_tab_name{
+        display:none;
+    }
+}
+@media screen  and (max-width:760px){
+    .user_tab{
+        margin-left:0;
+    }
+}

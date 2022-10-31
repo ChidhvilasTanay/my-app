@@ -16,7 +16,7 @@ import FlipMove from "react-flip-move";
 function Feedbar() {
    const [posts, setPosts]=useState([]);
    const [input, setInput]=useState('');
-   const [feedTab, setFeedTab]=useState("");
+  
 
    const user = useSelector(selectUser)
    
@@ -28,7 +28,6 @@ function Feedbar() {
         postHeading:"Heading",
         postContent:input,
         photoUrl:user.photoUrl,
-        feedType:feedTab,
         timeStamp:firebase.firestore.FieldValue.serverTimestamp()
     })
     }

@@ -12,6 +12,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import { useDispatch } from 'react-redux';
 import { logout } from './features/userSlice';
 import { auth } from './FireBase';
+import User from './User';
 function Header() {
   const dispatch = useDispatch();
   
@@ -35,7 +36,7 @@ function Header() {
          <HeaderTabs Icon={AssessmentIcon} tabName="Records"/>
          <HeaderTabs Icon={QueryStatsIcon} tabName="Statistics"/>
          <HeaderTabs Icon={EventAvailableIcon} tabName="Attendance"/>
-         <HeaderTabs avatar={true} tabName="User" onClick={Logout}/>
+         <User avatar={true} userName="User" onClick={Logout}/>
         </div>
     </div>
   )
