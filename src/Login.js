@@ -73,8 +73,9 @@ function Login() {
             setEmail(event.target.value)
         }}/>
 
-        <input type="text" 
+        <input type="password" 
         placeholder='Password' 
+        className='password_input'
         value={password}
          onChange={(event)=>{
             setPassword(event.target.value)

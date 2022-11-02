@@ -68,6 +68,9 @@
     width:100%;
     justify-content: space-around;
 }
+.feed_heading{
+    font-weight: 600;
+}
 .post_section{
     display:flex;
     flex-direction: column;

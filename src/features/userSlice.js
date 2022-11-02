@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export const userSlice = createSlice({
   name: 'user',
   initialState:{
-    user:null
+    user:null,
+    feedTab:"Announcements"
   },
   reducers: {
     login: (state, action) => {
@@ -11,10 +12,14 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
+    },
+    feedChange:(state,action) =>{
+      state.feedTab=action.payload
     }
   }
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout,feedChange } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
+export const selectFeed = (state) => state.user.feedTab;
 export default userSlice.reducer;

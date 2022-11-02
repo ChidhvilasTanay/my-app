@@ -14,7 +14,7 @@ function User({onClick, avatar, userName}) {
       </div>
       <div clasName="drop_down">
         <div className='drop_down_content'>
-          <div className="option" onClick={onClick} ><p>Log out</p><LogoutIcon/></div>
+          <div className="option" onClick={onClick}><p  >Log out</p><LogoutIcon/></div>
           <div className="option"><p>option 2</p></div>
           <div className="option"><p>option 3</p></div>
         </div>

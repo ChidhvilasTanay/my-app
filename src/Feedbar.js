@@ -10,16 +10,17 @@ import Post from './Post';
 import {db} from "./FireBase"
 import firebase from 'firebase/compat/app';
 import { useSelector } from 'react-redux';
-import { selectUser } from './features/userSlice';
+import { selectFeed, selectUser } from './features/userSlice';
 import FlipMove from "react-flip-move";
 
 function Feedbar() {
    const [posts, setPosts]=useState([]);
    const [input, setInput]=useState('');
-  
+
 
    const user = useSelector(selectUser)
-   
+   const feedTab = useSelector(selectFeed)
+
    const submitPost = (event) =>{
     event.preventDefault();
     db.collection("posts").add({
@@ -28,12 +29,13 @@ function Feedbar() {
         postHeading:"Heading",
         postContent:input,
         photoUrl:user.photoUrl,
+        feedType:feedTab,
         timeStamp:firebase.firestore.FieldValue.serverTimestamp()
     })
     }
 
      useEffect(()=>{
-    db.collection("posts").orderBy("timeStamp","desc").onSnapshot((snapshot)=>{
+    db.collection("posts").where("feedType","==",feedTab).orderBy("timeStamp","desc").onSnapshot((snapshot)=>{
         setPosts(snapshot.docs.map((doc)=>{
            return( {
             id:doc.id,
@@ -41,11 +43,7 @@ function Feedbar() {
             })
         }))
     })
-    },[]);
-
-    // const SetFeed=(event)=>{
-    //     setFeedTab(event.target.value)
-    // }
+    });
     
   return (
     <div className="feedbar">
@@ -75,14 +73,15 @@ function Feedbar() {
 
                 <InputOptions Icon={UpcomingIcon} 
                 name="Submissions"/>
-
             </div>
         </div>
+        <p className='feed_heading'>{feedTab}</p>
         <div className="post_section">
         <FlipMove>
           {posts.map(({id, data:{name, description, postHeading, postContent, photoUrl}}) => {
         return(
         <Post
+        key={id}
         postIdArg={id}
         name={name}
         description={description}
