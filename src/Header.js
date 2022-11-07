@@ -9,17 +9,17 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { useDispatch } from 'react-redux';
-import { logout } from './features/userSlice';
+import { useDispatch} from 'react-redux';
+import { logout} from './features/userSlice';
 import { auth } from './FireBase';
 import User from './User';
 function Header() {
   const dispatch = useDispatch();
-  
   const Logout = ()=>{
     dispatch(logout())
     auth.signOut();
   }
+
   return (
     <div className='header'>
         <div className='header_left'>

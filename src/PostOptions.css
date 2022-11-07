@@ -1,0 +1,16 @@
+.post_option{
+    display:flex;
+    align-items:center;
+    padding:10px;
+    border-radius: 10px;
+}
+.post_button {
+    border:none;
+    outline:none;
+    background-color:inherit;
+    margin:5px;
+}
+.post_option:hover{
+    background-color: rgb(228, 225, 225);
+}
+

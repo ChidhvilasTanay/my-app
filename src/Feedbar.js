@@ -43,7 +43,7 @@ function Feedbar() {
             })
         }))
     })
-    });
+    },[feedTab]);
     
   return (
     <div className="feedbar">

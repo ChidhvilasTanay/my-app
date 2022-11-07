@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import InputOptions from './InputOptions'
+import PostOptions from './PostOptions';
 import "./Post.css"
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import CommentIcon from '@mui/icons-material/Comment';
@@ -55,10 +55,10 @@ const Post = forwardRef(({ name, description, postHeading, postContent, imgUrl, 
            <p>{postContent}</p>
         </div>
         <div className="post_options">
-        <InputOptions name="Like" Icon={ThumbUpAltIcon}/>
-        <InputOptions name="Comment" Icon={CommentIcon} />
-        <InputOptions name="Share" Icon={ShareIcon}/>
-        <InputOptions name="Send" Icon={SendIcon}/>
+        <PostOptions name="Like" Icon={ThumbUpAltIcon}/>
+        <PostOptions name="Comment" Icon={CommentIcon} />
+        <PostOptions name="Share" Icon={ShareIcon}/>
+        <PostOptions name="Send" Icon={SendIcon}/>
         </div>
 
         <form className="comment_input" >
