@@ -21,7 +21,7 @@ export const userSlice = createSlice({
     },
      tabChange:(state,action) =>{
       state.currentTab=action.payload
-    }
+    },
   }
 });
 

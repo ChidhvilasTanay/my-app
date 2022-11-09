@@ -36,33 +36,39 @@ function Recordbar() {
         })
     }
 
+    const RenderSection=()=>{
+        switch(user.prev){
+        case "faculty":
+            return(<div className="record_input">
+            <form>
+                <input type="text" 
+                placeholder="Enter Course Name" 
+                value={course}
+                onChange={(event)=>{
+                    setCourse(event.target.value)
+                }}/>
+                <input type="text" 
+                placeholder="Enter Batch Name" 
+                value={batch}
+                onChange={(event)=>{
+                    setBatch(event.target.value)
+                }}/>
+                <input type="text" 
+                placeholder="Enter students enrolled" 
+                value={strength}
+                onChange={(event)=>{
+                    setStrength(event.target.value)
+                }}
+                />
+                <AddIcon className="add_symbol" sx={{fontSize:35}}onClick={AddTile} />
+            </form>
+        </div>)
+        }
+    }
+
   return (
     <div className="recordbar">
-       <div className="record_input">
-        <form>
-            <input type="text" 
-            placeholder="Enter Course Name" 
-            value={course}
-            onChange={(event)=>{
-                setCourse(event.target.value)
-            }}/>
-            <input type="text" 
-            placeholder="Enter Batch Name" 
-            value={batch}
-            onChange={(event)=>{
-                setBatch(event.target.value)
-            }}/>
-            <input type="text" 
-            placeholder="Enter students enrolled" 
-            value={strength}
-            onChange={(event)=>{
-                setStrength(event.target.value)
-            }}
-            />
-            <AddIcon className="add_symbol" sx={{fontSize:35}}onClick={AddTile} />
-        </form>
-
-       </div>
+       {RenderSection()}
        <div className='record_section'>
        {records.map(({id, data:{course, batch, strength, name}})=>{
         return(

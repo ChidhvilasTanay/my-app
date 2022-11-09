@@ -26,7 +26,7 @@ function Feedbar() {
     db.collection("posts").add({
         name:user.displayName,
         description:user.email,
-        postHeading:"Heading",
+        postHeading:"user",
         postContent:input,
         photoUrl:user.photoUrl,
         feedType:feedTab,

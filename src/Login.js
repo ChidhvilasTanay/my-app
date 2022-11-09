@@ -10,6 +10,7 @@ function Login() {
     const [email, setEmail]= useState("");
     const [password, setPassword]= useState("");
     const [profilePic, setProfilePic] = useState("")
+    const [prev, setPrev] = useState("")
     const dispatch = useDispatch();
     
     const Register =()=>{
@@ -28,6 +29,7 @@ function Login() {
             uid:userAuth.user.uid,
             displayName:username,
             photoURL:profilePic,
+            prev:prev,
             }))
          })
     }).catch((error)=>{alert(error.message)})
@@ -42,7 +44,8 @@ function Login() {
             email:userAuth.user.email,
             uid:userAuth.user.uid,
             displayName:userAuth.user.displayName,
-            photoUrl:userAuth.user.photoURL
+            photoUrl:userAuth.user.photoURL,
+            prev:prev
             }))
         }).catch((error)=>{alert(error)})
     }
@@ -79,6 +82,14 @@ function Login() {
         value={password}
          onChange={(event)=>{
             setPassword(event.target.value)
+        }}
+        />
+
+        <input type="text" 
+        placeholder='Admin passcode' 
+        value={prev}
+         onChange={(event)=>{
+            setPrev(event.target.value)
         }}
         />
 
