@@ -22,7 +22,37 @@
     padding-bottom:5px;
     margin-bottom: 7px;
 }
-.feed_input{
+.feed_input_articles{
+    display:flex;
+    width:100%;
+   
+    border:1px solid lightgray;
+    border-radius:30px;
+    padding:10px;
+    justify-content:center;
+    margin:5px;
+}
+.feed_input_announcements{
+    display:flex;
+    width:100%;
+    align-items: center;
+    border:1px solid lightgray;
+    border-radius:30px;
+    padding:10px;
+    justify-content:center;
+    margin:5px;
+}
+.feed_input_events{
+    display:flex;
+    width:100%;
+    align-items: center;
+    border:1px solid lightgray;
+    border-radius:30px;
+    padding:10px;
+    justify-content:center;
+    margin:5px;
+}
+.feed_input_submissions{
     display:flex;
     width:100%;
     align-items: center;
@@ -35,21 +65,24 @@
 .create_icon{
     padding:2px;
 }
-.feed_input > form{
+.feed_input_articles > form{
+    display: flex;
+    flex-direction: column;
     display:flex;
     flex:1;
     width:100%;
 
 }
-.feed_input > form > input{
+.feed_input_articles > form > input{
     flex:1;
     border:none;
     outline:none;
     padding-left:10px;
     padding-right:10px;
     font-weight: bold;
+    margin-bottom:15px;
 }
-.feed_input > form > button{
+.feed_input_articles > form > button{
     background-color: white;
     font-size: small;
     font-weight:bold;
@@ -59,7 +92,94 @@
     padding:7px;
     border-radius:10px;
 }
-.feed_input > form > button:hover{
+.feed_input_articles > form > button:hover{
+    color:black;
+    background-color: whitesmoke;
+}
+.article_intro_text{
+    border-bottom: 1px solid lightgray;
+}
+.feed_input_announcements > form{
+    display:flex;
+    flex:1;
+    width:100%;
+
+}
+.feed_input_announcements > form > input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding-left:10px;
+    padding-right:10px;
+    font-weight: bold;
+}
+.feed_input_announcements > form > button{
+    background-color: white;
+    font-size: small;
+    font-weight:bold;
+    color:gray;
+    border:none;
+    outline:none;
+    padding:7px;
+    border-radius:10px;
+}
+.feed_input_announcements > form > button:hover{
+    color:black;
+    background-color: whitesmoke;
+}
+.feed_input_events > form{
+    display:flex;
+    flex:1;
+    width:100%;
+
+}
+.feed_input_events > form > input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding-left:10px;
+    padding-right:10px;
+    font-weight: bold;
+}
+.feed_input_events > form > button{
+    background-color: white;
+    font-size: small;
+    font-weight:bold;
+    color:gray;
+    border:none;
+    outline:none;
+    padding:7px;
+    border-radius:10px;
+}
+.feed_input_events > form > button:hover{
+    color:black;
+    background-color: whitesmoke;
+}
+.feed_input_submissions > form{
+    display:flex;
+    flex:1;
+    width:100%;
+
+}
+.feed_input_submissions > form > input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding-left:10px;
+    padding-right:10px;
+    font-weight: bold;
+}
+.feed_input_submissions > form > button{
+    background-color: white;
+    font-size: small;
+    font-weight:bold;
+    color:gray;
+    border:none;
+    outline:none;
+    padding:7px;
+    border-radius:10px;
+}
+.feed_input_submissions > form > button:hover{
     color:black;
     background-color: whitesmoke;
 }

@@ -2,17 +2,16 @@ import React, { useState } from 'react'
 import "./Login.css"
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import { auth } from './FireBase';
-import { useDispatch } from 'react-redux';
-import { login } from './features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, prevChange, selectPrev} from './features/userSlice';
 
 function Login() {
     const [username, setUsername]= useState("");
     const [email, setEmail]= useState("");
     const [password, setPassword]= useState("");
     const [profilePic, setProfilePic] = useState("")
-    const [prev, setPrev] = useState("")
     const dispatch = useDispatch();
-    
+    const prev = useSelector(selectPrev)
     const Register =()=>{
       if(!username){
         return alert("name not entered!");
@@ -29,8 +28,10 @@ function Login() {
             uid:userAuth.user.uid,
             displayName:username,
             photoURL:profilePic,
-            prev:prev,
             }))
+         })
+         .then(()=>{
+          dispatch(prevChange(prev))
          })
     }).catch((error)=>{alert(error.message)})
     }
@@ -45,7 +46,6 @@ function Login() {
             uid:userAuth.user.uid,
             displayName:userAuth.user.displayName,
             photoUrl:userAuth.user.photoURL,
-            prev:prev
             }))
         }).catch((error)=>{alert(error)})
     }
@@ -89,7 +89,7 @@ function Login() {
         placeholder='Admin passcode' 
         value={prev}
          onChange={(event)=>{
-            setPrev(event.target.value)
+            dispatch(prevChange(event.target.value))
         }}
         />
 

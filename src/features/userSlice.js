@@ -5,7 +5,8 @@ export const userSlice = createSlice({
   initialState:{
     user:null,
     currentTab:"Home",
-    feedTab:"Announcements"
+    feedTab:"Announcements",
+    prev:"student",
   },
   reducers: {
     login: (state, action) => {
@@ -15,6 +16,7 @@ export const userSlice = createSlice({
       state.user = null
       state.feedTab="Announcements"
       state.currentTab="Home"
+      state.prev="Student"
     },
     feedChange:(state,action) =>{
       state.feedTab=action.payload
@@ -22,11 +24,15 @@ export const userSlice = createSlice({
      tabChange:(state,action) =>{
       state.currentTab=action.payload
     },
+     prevChange:(state,action) =>{
+      state.prev=action.payload
+    },
   }
 });
 
-export const { login, logout,feedChange,tabChange } = userSlice.actions;
+export const { login, logout,feedChange,tabChange,prevChange } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
 export const selectFeed = (state) => state.user.feedTab;
 export const selectTab = (state) => state.user.currentTab;
+export const selectPrev = (state) => state.user.prev;
 export default userSlice.reducer;

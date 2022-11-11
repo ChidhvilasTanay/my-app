@@ -10,24 +10,67 @@ import Post from './Post';
 import {db} from "./FireBase"
 import firebase from 'firebase/compat/app';
 import { useSelector } from 'react-redux';
-import { selectFeed, selectUser } from './features/userSlice';
+import { selectFeed, selectPrev, selectUser } from './features/userSlice';
 import FlipMove from "react-flip-move";
 
 function Feedbar() {
    const [posts, setPosts]=useState([]);
-   const [input, setInput]=useState('');
-
+   const [articleIntro, setArticleIntro]=useState("");
+   const [articleInput, setArticleInput]=useState("");
+   const [announcementInput, setAnnouncementInput]=useState('');
+   const [eventInput, setEventInput]=useState('');
+   const [submissionInput, setSubmissionInput]=useState('');
 
    const user = useSelector(selectUser)
    const feedTab = useSelector(selectFeed)
-
-   const submitPost = (event) =>{
+   const prev = useSelector(selectPrev);
+   const submitArticle = (event) =>{
     event.preventDefault();
     db.collection("posts").add({
         name:user.displayName,
         description:user.email,
-        postHeading:"user",
-        postContent:input,
+        postHeading:prev,
+        intro:articleIntro,
+        postContent:articleInput,
+        photoUrl:user.photoUrl,
+        feedType:feedTab,
+        timeStamp:firebase.firestore.FieldValue.serverTimestamp()
+    })
+    }
+
+       const submitAnnouncement = (event) =>{
+    event.preventDefault();
+    db.collection("posts").add({
+        name:user.displayName,
+        description:user.email,
+        postHeading:prev,
+        postContent:announcementInput,
+        photoUrl:user.photoUrl,
+        feedType:feedTab,
+        timeStamp:firebase.firestore.FieldValue.serverTimestamp()
+    })
+    }
+
+       const submitEvent = (event) =>{
+    event.preventDefault();
+    db.collection("posts").add({
+        name:user.displayName,
+        description:user.email,
+        postHeading:prev,
+        postContent:eventInput,
+        photoUrl:user.photoUrl,
+        feedType:feedTab,
+        timeStamp:firebase.firestore.FieldValue.serverTimestamp()
+    })
+    }
+
+       const submitSubmission = (event) =>{
+    event.preventDefault();
+    db.collection("posts").add({
+        name:user.displayName,
+        description:user.email,
+        postHeading:prev,
+        postContent:submissionInput,
         photoUrl:user.photoUrl,
         feedType:feedTab,
         timeStamp:firebase.firestore.FieldValue.serverTimestamp()
@@ -44,23 +87,87 @@ function Feedbar() {
         }))
     })
     },[feedTab]);
-    
-  return (
-    <div className="feedbar">
-        <div className="input_container">
-            <div className="feed_input">
+
+const RenderInput = ()=>{
+    switch(feedTab){
+        case "Articles":return(
+             <div className="feed_input_articles">
+                <CreateIcon className="create_icon"/>
+                <form>
+                 <input type="text" 
+                className="article_intro_text" 
+                placeholder="Introduction.." 
+                value={articleIntro}
+                onChange={(event)=>{
+                    setArticleIntro(event.target.value)
+                }}/>
+                 <input type="text" 
+                className="input_text" 
+                placeholder="Enter Text here.." 
+                value={articleInput}
+                onChange={(event)=>{
+                    setArticleInput(event.target.value)
+                }}/>
+                <button className="submit_button" onClick={submitArticle}>Submit</button>
+                </form>
+            </div>
+        )
+        case "Announcements":return(
+             <div className="feed_input_announcements">
                 <CreateIcon className="create_icon"/>
                 <form>
                  <input type="text" 
                 className="input_text" 
                 placeholder="Enter Text here.." 
-                value={input}
+                value={announcementInput}
                 onChange={(event)=>{
-                    setInput(event.target.value)
+                    setAnnouncementInput(event.target.value)
                 }}/>
-                <button className="submit_button" onClick={submitPost}>Submit</button>
+                <button className="submit_button" onClick={submitAnnouncement}>Submit</button>
                 </form>
             </div>
+        )
+        case "Events":return(
+             <div className="feed_input_events">
+                <CreateIcon className="create_icon"/>
+                <form>
+                 <input type="text" 
+                className="input_text" 
+                placeholder="Enter Text here.." 
+                value={eventInput}
+                onChange={(event)=>{
+                    setEventInput(event.target.value)
+                }}/>
+                <button className="submit_button" onClick={submitEvent}>Submit</button>
+                </form>
+            </div>
+        )
+        case "Submissions":return(
+             <div className="feed_input_submissions">
+                <CreateIcon className="create_icon"/>
+                <form>
+                 <input type="text" 
+                className="input_text" 
+                placeholder="Enter Text here.." 
+                value={submissionInput}
+                onChange={(event)=>{
+                    setSubmissionInput(event.target.value)
+                }}/>
+                <button className="submit_button" onClick={submitSubmission}>Submit</button>
+                </form>
+            </div>
+        )
+    }
+}
+
+
+
+
+    
+  return (
+    <div className="feedbar">
+        <div className="input_container">
+           {RenderInput()}
             <div className="feed_input_options">
                 <InputOptions Icon={FeedIcon} 
                 name="Articles" />
@@ -78,16 +185,17 @@ function Feedbar() {
         <p className='feed_heading'>{feedTab}</p>
         <div className="post_section">
         <FlipMove>
-          {posts.map(({id, data:{name, description, postHeading, postContent, photoUrl}}) => {
+          {posts.map(({id, data}) => {
         return(
         <Post
         key={id}
         postIdArg={id}
-        name={name}
-        description={description}
-        postHeading={postHeading}
-        postContent={postContent}
-        imgUrl={photoUrl}/>
+        name={data.name}
+        description={data.description}
+        intro ={data.intro}
+        postHeading={data.postHeading}
+        postContent={data.postContent}
+        imgUrl={data.photoUrl}/>
         )
         })}
         </FlipMove>

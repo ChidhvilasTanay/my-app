@@ -13,7 +13,7 @@ import Comment from './Comment';
 import { db } from './FireBase';
 import firebase from 'firebase/compat/app';
 
-const Post = forwardRef(({ name, description, postHeading, postContent, imgUrl, postIdArg}, ref)=> {
+const Post = forwardRef(({ name, description, intro, postHeading, postContent, imgUrl, postIdArg}, ref)=> {
  
   const user = useSelector(selectUser)
   const [comments, setComments]=useState([]);
@@ -52,6 +52,7 @@ const Post = forwardRef(({ name, description, postHeading, postContent, imgUrl, 
         </div>
         <div className="post_body">
            <h4>{postHeading}</h4>
+           <p>{intro}</p>
            <p>{postContent}</p>
         </div>
         <div className="post_options">

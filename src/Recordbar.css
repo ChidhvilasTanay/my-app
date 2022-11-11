@@ -13,13 +13,26 @@
     padding:15px;
     border:1px solid lightgray;
 }
-
+.tile_search{
+    margin:20px;
+    width:40%;
+    background-color: white;
+    border-radius:15px;
+    padding:15px;
+    border: 1px solid lightgray;
+    display:flex;
+    justify-content: space-between;
+}
 .record_input form{
     display:flex;
     flex-direction: column;
     align-items: center;
 }
-
+.tile_search form{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+}
 .add_symbol{
     margin:10px;
     border:1px solid lightgray;
@@ -39,6 +52,11 @@
     outline:none;
     background-color: whitesmoke;
     border:0.5px solid lightgray;
+}
+.tile_search input{
+    border:none;
+    outline:none;
+    font-size: medium;
 }
 .record_section {
     width:100%;
