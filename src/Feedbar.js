@@ -26,6 +26,8 @@ function Feedbar() {
    const prev = useSelector(selectPrev);
    const submitArticle = (event) =>{
     event.preventDefault();
+    setArticleInput("");
+    setArticleIntro("");
     db.collection("posts").add({
         name:user.displayName,
         description:user.email,
@@ -40,6 +42,7 @@ function Feedbar() {
 
        const submitAnnouncement = (event) =>{
     event.preventDefault();
+    setAnnouncementInput("");
     db.collection("posts").add({
         name:user.displayName,
         description:user.email,
@@ -53,6 +56,7 @@ function Feedbar() {
 
        const submitEvent = (event) =>{
     event.preventDefault();
+    setEventInput("");
     db.collection("posts").add({
         name:user.displayName,
         description:user.email,
@@ -66,6 +70,7 @@ function Feedbar() {
 
        const submitSubmission = (event) =>{
     event.preventDefault();
+    setSubmissionInput("");
     db.collection("posts").add({
         name:user.displayName,
         description:user.email,
@@ -116,7 +121,7 @@ const RenderInput = ()=>{
              <div className="feed_input_announcements">
                 <CreateIcon className="create_icon"/>
                 <form>
-                 <input type="text" 
+                 <input type="input" 
                 className="input_text" 
                 placeholder="Enter Text here.." 
                 value={announcementInput}

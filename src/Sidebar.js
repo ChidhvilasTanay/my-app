@@ -18,16 +18,16 @@ function Sidebar() {
         <img src="http://placekitten.com/200/100"/>
         <Avatar src={user.photoUrl}></Avatar>
         <h3>{user.displayName}</h3>
-        <p>software engineering project day 1</p>
+        <p>USER BIO</p>
       </div>
       <div className="sidebar_views">
         <div className="view_count_box">
           <p>account viewers</p>
-          <p>6969</p>
+          <p>9999</p>
         </div>
         <div className="view_count_box">
           <p>post viewers</p>
-          <p>6969</p>
+          <p>9999</p>
         </div>
       </div>
       <div className="recent_section">

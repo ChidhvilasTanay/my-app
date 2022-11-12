@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./Records.css"
 import AddIcon from '@mui/icons-material/Add';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { db } from './FireBase';
 import { useSelector } from 'react-redux';
 import { selectPrev, selectUser } from './features/userSlice';
@@ -10,6 +11,7 @@ function Records({subjectName, batchName, batchStrength, facultyName, marks}) {
   const [studentName, setStudentName]=useState("");
   const [studentMarks, setStudentMarks]=useState("");
   const [studentBatch, setStudentBatch]=useState("");
+  const [openAdd, setOpenAdd]=useState(false);
   const user = useSelector(selectUser)
   const prev = useSelector(selectPrev)
   const AddMarks=(event)=>{
@@ -22,6 +24,43 @@ function Records({subjectName, batchName, batchStrength, facultyName, marks}) {
       faculty:user.displayName,
       timeStamp:firebase.firestore.FieldValue.serverTimestamp(),
     })
+  }
+
+  const AddForm =()=>{
+    if(openAdd){
+     return( <div className='add_student'>
+        <form>
+              <input
+        type="text"
+        placeholder='Name'
+        value={studentName}
+        onChange={(event)=>{
+          setStudentName(event.target.value)
+        }}/>
+        <input
+        type="text"
+        placeholder='Marks'
+        value={studentMarks}
+        onChange={(event)=>{
+          setStudentMarks(event.target.value)
+        }}/>
+        <input
+        type="text"
+        placeholder='Batch'
+        value={studentBatch}
+        onChange={(event)=>{
+          setStudentBatch(event.target.value)
+        }}/>
+        <div className="add_close">
+            <AddIcon className="add_symbol" sx={{fontSize:35}}onClick={AddMarks} />
+            <KeyboardArrowUpIcon  className="up_arrow" onClick={()=>{setOpenAdd(false)}}/>
+        </div>
+        </form>
+       </div>)
+    }
+    else{
+      return(<div className="add_student_button"onClick={()=>{setOpenAdd(true)}}><p>Add Student</p></div>)
+    }
   }
 
   return (
@@ -43,33 +82,11 @@ function Records({subjectName, batchName, batchStrength, facultyName, marks}) {
         </div>
        
 
-       {(prev=="faculty")?(<div className='add_student'>
-        <form>
-              <input
-        type="text"
-        value={studentName}
-        onChange={(event)=>{
-          setStudentName(event.target.value)
-        }}/>
-        <input
-        type="text"
-        value={studentMarks}
-        onChange={(event)=>{
-          setStudentMarks(event.target.value)
-        }}/>
-        <input
-        type="text"
-        value={studentBatch}
-        onChange={(event)=>{
-          setStudentBatch(event.target.value)
-        }}/>
-        <AddIcon className="add_symbol" sx={{fontSize:35}}onClick={AddMarks} />
-        </form>
-       </div> ):null}
+       {(prev=="faculty")?(AddForm()):null}
 
        {(prev=="student")?(<div className="scorecard">
         <p>marks scored:</p>
-        <p>{marks}</p>
+        <h4>{marks}</h4>
         </div>):null}
 
 

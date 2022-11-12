@@ -17,6 +17,18 @@
     border-radius: 3px;
     font-weight: 600;
 }
+.login>form>select{
+    margin-bottom:10px;
+    width:350px;
+    height:50px;
+    padding:5px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+.logo_init{
+    margin:10px;
+}
+
 .password_input{
     font-weight: 600;
 }
@@ -25,8 +37,43 @@
     height:50px;
     border: 2px solid blue;
     border-radius: 3px;
+    cursor: pointer;
 }
 .login_register{
     color:blue;
     cursor: pointer;
+}
+.register_div{
+     display:flex;
+    flex-direction: column;
+    padding:10px;
+}
+.register_div>input{
+     margin-bottom:10px;
+    width:350px;
+    height:50px;
+    padding:5px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+.register_div>select{
+     margin-bottom:10px;
+    width:350px;
+    height:50px;
+    padding:5px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+.register_div>button{
+       height:50px;
+    border: 2px solid blue;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.member{
+    display:flex;
+    justify-content: space-around;
+}
+.member span{
+margin-left:5px;
 }

@@ -10,8 +10,10 @@ function Login() {
     const [email, setEmail]= useState("");
     const [password, setPassword]= useState("");
     const [profilePic, setProfilePic] = useState("")
+    const [member, setMember]= useState(true)
     const dispatch = useDispatch();
     const prev = useSelector(selectPrev)
+
     const Register =()=>{
       if(!username){
         return alert("name not entered!");
@@ -50,10 +52,41 @@ function Login() {
         }).catch((error)=>{alert(error)})
     }
 
-  return (
-    <div className="login">
-    <LocalFireDepartmentIcon sx={{fontSize: 60}}/>
-    <form>
+  const RenderMember=()=>{
+    if(member){
+    return(
+        <form>
+        <input type="text"
+         placeholder='Email' 
+         value={email}
+         onChange={(event)=>{
+            setEmail(event.target.value)
+        }}/>
+
+        <input type="password" 
+        placeholder='Password' 
+        className='password_input'
+        value={password}
+         onChange={(event)=>{
+            setPassword(event.target.value)
+        }}
+        />
+
+        <select value={prev}  className="drop_down" onChange={(event)=>{
+            dispatch(prevChange(event.target.value))
+        }} >
+          <option>student</option>
+          <option>faculty</option>
+        </select>
+
+        <button type="submit" onClick={loginToApp}>LOGIN</button>
+      </form>
+    )
+    }
+
+    else{
+          return(
+            <div className="register_div">
         <input type="text" 
         placeholder='Username' 
         value={username}
@@ -85,18 +118,32 @@ function Login() {
         }}
         />
 
-        <input type="text" 
-        placeholder='Admin passcode' 
-        value={prev}
-         onChange={(event)=>{
+       <select value={prev}  className="drop_down" onChange={(event)=>{
             dispatch(prevChange(event.target.value))
-        }}
-        />
+        }} >
+          <option>student</option>
+          <option>faculty</option>
+        </select>
 
-        <button type="submit" onClick={loginToApp}>SIGN IN</button>
-    </form>
-    <p>Not registered yet?</p>
-    <span className="login_register" onClick={Register}>Register Now</span>
+        <button type="submit" onClick={Register}>SIGN IN</button>
+    </div>
+          )
+    }
+  }
+
+  return (
+    <div className="login">
+    <LocalFireDepartmentIcon sx={{fontSize: 60}}/>
+    {RenderMember()}
+    {member ? (<div className="member">
+      <p>Not registered yet?</p>
+    <span className="login_register" onClick={()=>{setMember(false)}}>Register Now</span>
+      </div>):(<div className="member">
+      <p>Already have an account?</p>
+    <span className="login_register" onClick={()=>{setMember(true)}}>Login</span>   
+      </div>
+      )}
+    
     </div>
   )
 }

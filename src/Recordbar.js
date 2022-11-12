@@ -15,6 +15,7 @@ function Recordbar() {
     const [searchCourse, setSearchCourse]=useState();
     const user = useSelector(selectUser)
     const prev = useSelector(selectPrev)
+
     useEffect(()=>{
         if(prev=="faculty"){
                db.collection("records").where("name","==",user.displayName).orderBy("timeStamp","desc").onSnapshot((snapshot)=>{
@@ -40,6 +41,9 @@ function Recordbar() {
    
     const AddTile=(event)=>{
         event.preventDefault();
+        setBatch("");
+        setCourse("");
+        setStrength("");
         db.collection("records").add({
             name:user.displayName,
             course:course,
